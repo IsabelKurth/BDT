@@ -1,0 +1,48 @@
+# run postgres image
+docker pull postgres
+
+# start postgres containter BDT
+docker run --name BDT -e POSTGRES_PASSWORD=projectwi -d -p postgres
+docker exec -it BDT psql -U postgres
+
+# show all databases 
+\l
+CREATE DATABASE customers_text;
+
+# open database
+\c customers_text
+
+# create table 
+CREATE TABLE reviews (
+  id INTEGER,
+  clothing_id INTEGER,
+  age INTEGER,
+  title TEXT,
+  review_text TEXT,
+  rating INTEGER,
+  recommended_ind INTEGER,
+  positive_feedback_count INTEGER,
+  division_name TEXT,
+  department_name TEXT,
+  class_name TEXT
+);
+
+# show reviews table 
+\d reviews 
+\q
+
+# load kaggle dataset 
+docker cp clothing.csv BDT:/clothing.csv
+docker exec -it BDT psql -U postgres
+\c customers_text
+
+# load dataset into reviews table 
+COPY reviews(id, clothing_id, age, title, review_text, rating, recommended_ind, positive_feedback_count, division_name, department_name, class_name)
+FROM '/clothing.csv'
+DELIMITER ','
+CSV HEADER;
+
+# check if table is filled with data 
+\d reviews
+SELECT COUNT(*) FROM reviews; 
+
