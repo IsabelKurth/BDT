@@ -1,7 +1,7 @@
 # BDT: Project Customer Sentiment Analysis
 
 ## 0. Step: Preprocessing of csv file
-clothing.csv file from Kaggle has unquoted new lines. This makes trouble when uploading it to postgres database. Therefore run preprocessing.py to use quoted csv field. Output file is clothing_updates.csv. 
+clothing.csv file from Kaggle (https://www.kaggle.com/datasets/nicapotato/womens-ecommerce-clothing-reviews) has unquoted new lines. This makes trouble when uploading it to postgres database. Therefore run preprocessing.py to use quoted csv field. Output file is clothing_updates.csv. 
 
 ## 1. Step: Docker and Postgres Database
 Run commands in the docker_postgres.txt file in a command prompt to create the database and load the dataset from kaggel into it (clothing_updates.csv). 
@@ -13,5 +13,6 @@ Updated file with classification of the review text is saved in column classific
 
 ## 3.Step: Visualization in Tableau 
 Connect with Tableau desctop to Postgres database customers_data. 
+To see dashboard open Tableau_platform_analysis.twbx or access Tableau trough this link: https://public.tableau.com/app/profile/isabel.kurth/viz/Tableau_platform_analysis/Comparisonsentimentandstarrating
 
 
